@@ -1,0 +1,141 @@
+TASK DAY- 37
+Design DB model for Guvi Zen class Student Collection Batch Collection Task Collection Mentor Collection
+•	This code is executed in Oracle sql and the result has also been attached below each queries.
+
+--  Creating Students Table.
+
+CREATE TABLE students(
+    S_No INTEGER NOT NULL primary Key,
+    Student_Name VARCHAR(25) NOT NULL,
+    Course VARCHAR(25) NOT NULL,
+    Mentor VARCHAR(25) NOT NULL,
+    Phone_Number INTEGER NOT NULL
+);
+
+--Inserting inforamtion
+
+INSERT INTO students  (S_No,Student_Name,Course,Mentor,Phone_Number)
+WITH names AS(
+    select 1,  'Virat Kohli', 'Full Stack Developer', 'Sai Mohan',1111111111 from dual
+union all 
+    select 2, 'M S Dhoni','Full Stack Developer','Sai Mohan',2222222222 from dual
+union all
+    select 3, 'Rohit Sharma','Data Scientist','Chandrasekhar',3333333333 from dual
+union all
+    select 4,'Jos Buttler','Data Scientist','Chandrasekhar',4444444444 from dual
+union all
+    select 5, 'Shaun Tait','Full Stack Developer','Sai Mohan',5555555555 from dual
+union all
+    select 6, 'Ricky Pointing','Data Scientist','Chandrasekhar',6666666666 from dual
+union all
+    select 7, 'Shaun Clarke','Full Stack Developer','Sai Mohan',7777777777 from dual
+)
+select * from names
+
+Output:
+S_NO	STUDENT_NAME	COURSE	MENTOR	PHONE_NUMBER
+1	Virat Kohli	Full Stack Developer	Sai Mohan	1111111111
+2	M S Dhoni	Full Stack Developer	Sai Mohan	2222222222
+3	Rohit Sharma	Data Scientist	Chandrasekhar	3333333333
+4	Jos Buttler	Data Scientist	Chandrasekhar	4444444444
+5	Shaun Tait	Full Stack Developer	Sai Mohan	5555555555
+6	Ricky Pointing	Data Scientist	Chandrasekhar	6666666666
+7	Shaun Clarke	Full Stack Developer	Sai Mohan	7777777777
+Download CSV
+7 rows selected.
+
+
+-- Creating batch details table
+  
+CREATE TABLE batch_details(
+        Batch_id INTEGER NOT NULL primary Key,
+        Batch_Name VARCHAR(25) NOT NULL,
+        Course_Name VARCHAR(25) NOT NULL,
+        Number_of_Students INTEGER NOT NULL
+    );
+
+--Inserting info into table
+
+INSERT INTO batch_details (Batch_id, Batch_Name, Course_Name,Number_of_Students) 
+WITH names AS(
+    select 1,  'B25WD', 'Full Stack Development', 50  from dual
+union all 
+    select 2,  'B26WD', 'Data Science', 50 from dual
+union all
+    select 3,  'B27WD', 'Full Stack Development', 60 from dual
+union all
+    select 4,  'B28WD', 'Data Science', 40 from dual
+)
+select * from names
+
+Output:
+BATCH_ID	BATCH_NAME	COURSE_NAME	NUMBER_OF_STUDENTS
+1	B25WD	Full Stack Development	50
+2	B26WD	Data Science	50
+3	B27WD	Full Stack Development	60
+4	B28WD	Data Science	40
+Download CSV
+4 rows selected.
+
+
+-- Create  tasks details table
+
+CREATE TABLE tasks_details(
+        Task_id INTEGER NOT NULL primary Key,
+        Task VARCHAR(200) NOT NULL,
+        Task_date DATE NOT NULL,
+        Due_date DATE NOT NULL,
+        No_of_submissions INTEGER NOT NULL
+    );
+--Inserting info into table
+
+INSERT INTO tasks_details (Task_id, Task, Task_date, Due_date, No_of_submissions)
+WITH names AS (
+    select 1, 'Pagination', DATE'2022-01-10', DATE '2022-01-15', 15 from dual
+    union all select 2, 'Dashboard', DATE'2022-01-13',  DATE '2022-01-19',10 from dual
+    union all select 3, 'Billing board',  DATE'2022-01-14', DATE'2022-01-20',12 from dual
+    union all select 4, 'Web-scraper',  DATE'2022-01-15', DATE'2022-01-22',25 from dual
+    union all select 5, 'URL-shortener',  DATE'2022-01-16', DATE'2022-01-23',35 from dual
+    
+)
+
+select * from names
+
+
+TASK_ID	TASK	TASK_DATE	DUE_DATE	NO_OF_SUBMISSIONS
+1	Pagination	10-JAN-22	15-JAN-22	15
+2	Dashboard	13-JAN-22	19-JAN-22	10
+3	Billing board	14-JAN-22	20-JAN-22	12
+4	Web-scraper	15-JAN-22	22-JAN-22	25
+5	URL-shortener	16-JAN-22	23-JAN-22	35
+Download CSV
+5 rows selected.
+
+
+-- Creating mentor_details table
+
+CREATE TABLE mentors_details(
+        Mentor_id INTEGER NOT NULL primary Key,
+        Mentor_name VARCHAR(25) NOT NULL,
+        Specialization VARCHAR(50) NOT NULL,
+        Phone_Number INTEGER NOT NULL
+
+    );
+
+-- Inserting details into the table
+
+INSERT INTO mentors_details (Mentor_id,Mentor_name,Specialization,Phone_Number)
+WITH names AS(select 1, 'Sai Mohan', 'Full Stack Development', 8888888888 from dual
+union all select 2, 'Chandrasekhar', 'Data Scientist' , 999999999 from dual
+union all select 3, 'Kishore', 'Automation Testing', 1010101010 from dual)
+
+select * from names
+
+Output:
+MENTOR_ID	MENTOR_NAME	SPECIALIZATION	PHONE_NUMBER
+1	Sai Mohan	Full Stack Development	8888888888
+2	Chandrasekhar	Data Scientist	999999999
+3	Kishore	Automation Testing	1010101010
+Download CSV
+3 rows selected.
+
